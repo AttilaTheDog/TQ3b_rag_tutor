@@ -4,7 +4,7 @@ KI-gestützter Tutor für IT-Administration & Cybersecurity Training mit progres
 
 **Stand: 11. Dezember 2025** - Alle Versionen aktuell!
 
-## 📦 Versionen
+## Versionen
 
 | Komponente | Version | Release |
 |------------|---------|---------|
@@ -18,7 +18,7 @@ KI-gestützter Tutor für IT-Administration & Cybersecurity Training mit progres
 | pypdf | 6.4.1 | 2025 |
 | Python | 3.11 | - |
 
-## 🚀 Quick Start
+## Quick Start
 
 ### 1. Repository auf Server kopieren
 
@@ -53,7 +53,7 @@ docker compose up -d --build
 - Backend API: http://DEIN-VPS-IP:8000/docs
 - Qdrant Dashboard: http://DEIN-VPS-IP:6333/dashboard
 
-## 🏗️ Architektur
+## Architektur
 
 ```
 ┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
@@ -69,7 +69,7 @@ docker compose up -d --build
                         └─────────────────┘
 ```
 
-## 📚 Progressive Hint-Levels
+## Progressive Hint-Levels
 
 | Level | Name | Beschreibung |
 |-------|------|--------------|
@@ -78,12 +78,12 @@ docker compose up -d --build
 | 3 | Syntax/Weg | Konkreter Befehl oder Weg |
 | 4 | Lösung | Vollständige Lösung |
 
-## 👥 Benutzer
+## Benutzer
 
 - **trainer** - Kann Dokumente hochladen und Statistiken sehen
 - **student1-5** - Können Fragen stellen und Hints erhalten
 
-## 🔧 Befehle
+## Befehle
 
 ```bash
 # Status prüfen
@@ -106,7 +106,7 @@ docker compose up -d
 docker compose down -v
 ```
 
-## 📁 Dateistruktur
+## Dateistruktur
 
 ```
 rag-tutor/
@@ -123,13 +123,8 @@ rag-tutor/
     └── app.py
 ```
 
-## 💰 Kosten (geschätzt)
 
-- Hetzner CPX21: ~8€/Monat
-- OpenAI API (5 Studenten × 50 Fragen/Woche): ~2-5€/Monat
-- **Gesamt: ~10-15€/Monat**
-
-## 🔐 Sicherheit
+## Sicherheit
 
 Für Produktionsumgebung:
 1. Ändere alle Passwörter in `.env`
@@ -137,28 +132,6 @@ Für Produktionsumgebung:
 3. Beschränke Firewall auf nötige Ports
 4. Backup der Qdrant-Daten einrichten
 
-## 🐛 Troubleshooting
-
-### Backend startet nicht
-```bash
-docker compose logs backend
-# Prüfe ob OPENAI_API_KEY gesetzt ist
-```
-
-### Qdrant Verbindungsfehler
-```bash
-docker compose restart qdrant
-# Warte 10 Sekunden, dann:
-docker compose restart backend
-```
-
-### Import-Fehler
-Stelle sicher, dass du die aktuellen requirements.txt verwendest mit LangChain 1.x Imports.
-
-## 📝 Lizenz
+## Lizenz
 
 MIT License
-
----
-
-Erstellt für Cybersecurity-Training mit ❤️
