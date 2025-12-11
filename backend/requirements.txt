@@ -1,0 +1,27 @@
+# RAG-Tutor Backend Dependencies
+# Alle Versionen verifiziert - Stand 11. Dezember 2025
+
+# Web Framework
+fastapi>=0.124.0
+uvicorn[standard]>=0.38.0
+python-multipart>=0.0.18
+
+# Auth
+python-jose[cryptography]>=3.3.0
+passlib[bcrypt]>=1.7.4
+bcrypt<4.1.0
+
+# LangChain Core (1.x - Released Oct 2025)
+langchain>=1.0.0
+langchain-core>=1.0.0
+langchain-openai>=1.0.0
+
+# LangChain Text Processing
+langchain-text-splitters>=1.0.0
+
+# LangChain Qdrant Integration
+langchain-qdrant>=0.2.0
+qdrant-client>=1.16.0
+
+# PDF Processing
+pypdf>=6.0.0

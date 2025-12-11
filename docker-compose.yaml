@@ -1,0 +1,72 @@
+# RAG-Tutor Docker Compose
+# Stand: 11. Dezember 2025
+# Alle Versionen verifiziert
+
+services:
+  # Qdrant Vector Database - v1.16.2 (aktuellste Version)
+  qdrant:
+    image: qdrant/qdrant:v1.16.2
+    container_name: rag-tutor-qdrant
+    restart: unless-stopped
+    ports:
+      - "6333:6333"   # REST API
+      - "6334:6334"   # gRPC
+    volumes:
+      - qdrant_data:/qdrant/storage
+    networks:
+      - rag-internal
+
+  # Backend - FastAPI + LangChain 1.x
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: rag-tutor-backend
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - JWT_SECRET=${JWT_SECRET}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+      - QDRANT_HOST=qdrant
+      - QDRANT_PORT=6333
+      # Student Passwords
+      - STUDENT1_PW=${STUDENT1_PW}
+      - STUDENT2_PW=${STUDENT2_PW}
+      - STUDENT3_PW=${STUDENT3_PW}
+      - STUDENT4_PW=${STUDENT4_PW}
+      - STUDENT5_PW=${STUDENT5_PW}
+      - STUDENT6_PW=${STUDENT6_PW}
+      - STUDENT7_PW=${STUDENT7_PW}
+    depends_on:
+      - qdrant
+    networks:
+      - rag-internal
+      - rag-frontend
+
+  # Frontend - Streamlit
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: rag-tutor-frontend
+    restart: unless-stopped
+    ports:
+      - "8501:8501"
+    environment:
+      - BACKEND_URL=http://backend:8000
+    depends_on:
+      - backend
+    networks:
+      - rag-frontend
+
+volumes:
+  qdrant_data:
+    driver: local
+
+networks:
+  rag-internal:
+    driver: bridge
+  rag-frontend:
+    driver: bridge

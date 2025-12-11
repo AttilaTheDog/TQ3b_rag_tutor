@@ -1,0 +1,5 @@
+# RAG-Tutor Frontend Dependencies
+# Stand: 11. Dezember 2025
+
+streamlit>=1.52.0
+requests>=2.32.0
